@@ -6,6 +6,10 @@ const store = init({
 });
 
 store.dispatch({
+  type: 'app/fetchHotCities'
+});
+
+store.dispatch({
   type: 'user/loadUserFromCache'
 });
 
