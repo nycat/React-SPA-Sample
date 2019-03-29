@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '@reach/router';
 import Header from '../../components/Layout/header';
+import FormInputField from '../../components/Form/FormInputField';
 
 import './style.scss';
 
@@ -24,30 +25,25 @@ class Login extends Component {
   }
 
   render() {
+    if (this.props.isLogin) return null;
+
     return (
       <div className="login-page">
         <Header title="Login" />
         <form onSubmit={this.doLogin} className="login-form">
-          <div className="form-field">
-            <i className="icon-tablet icon" />
-            <input
-              type="text"
-              placeholder="Account"
-              name={'account'}
-              onChange={this.handleChange}
-              value={this.state.account}
-            />
-          </div>
-          <div className="form-field">
-            <i className="icon-tablet icon" />
-            <input
-              type="password"
-              placeholder="Password"
-              name={'password'}
-              onChange={this.handleChange}
-              value={this.state.passwod}
-            />
-          </div>
+          <FormInputField
+            name="account"
+            value={this.state.account}
+            onChange={this.handleChange}
+            icon="icon-user"
+          />
+          <FormInputField
+            name="password"
+            value={this.state.password}
+            type="password"
+            onChange={this.handleChange}
+            icon="icon-tablet"
+          />
           <div className="form-field">
             <button type="submit">submit</button>
           </div>
@@ -57,14 +53,15 @@ class Login extends Component {
   }
 
   handleChange = e => {
+    e.stopPropagation();
     this.setState({
       [e.target.name]: e.target.value
     });
-    e.stopPropagation();
   };
 
   doLogin = e => {
     e.preventDefault();
+
     const { account, password } = this.state;
     const validAccount = /\d{11}/.test(account);
     const validPassword = password.length >= 6;
