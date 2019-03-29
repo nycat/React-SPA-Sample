@@ -3,6 +3,7 @@ import * as localStoreKey from '../configs/localStoreKey';
 import localStorage from './localStorage';
 import { API_BASE } from '../configs';
 import { Base64 } from 'js-base64';
+import store from '../rematch';
 
 axios.defaults.baseURL = API_BASE;
 axios.defaults.headers.post['Content-Type'] =
@@ -16,11 +17,19 @@ axios.interceptors.request.use(config => {
     const token = localStorage.getItem(localStoreKey.TOKEN_KEY);
     config.headers.Authorization = token;
   }
+  store.dispatch({
+    type: 'app/setAjaxSpinner',
+    payload: true
+  });
   return config;
 });
 
 axios.interceptors.response.use(
   response => {
+    store.dispatch({
+      type: 'app/setAjaxSpinner',
+      payload: false
+    });
     const { data } = response;
     if (data) {
       return data;
@@ -29,6 +38,10 @@ axios.interceptors.response.use(
     }
   },
   error => {
+    store.dispatch({
+      type: 'app/setAjaxSpinner',
+      payload: false
+    });
     Promise.reject(error);
   }
 );
@@ -44,4 +57,8 @@ export const doLogin = ({ account, password }) => {
       }
     }
   );
+};
+
+export const fetchHotCities = () => {
+  return axios.get('/city');
 };
