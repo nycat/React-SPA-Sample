@@ -62,3 +62,10 @@ export const doLogin = ({ account, password }) => {
 export const fetchHotCities = () => {
   return axios.get('/city');
 };
+
+export const updateUserLocation = city => {
+  console.log(city);
+  return axios.post('/user/city', {
+    city
+  });
+};

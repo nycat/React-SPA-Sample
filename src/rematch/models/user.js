@@ -7,13 +7,20 @@ const user = {
   state: {
     id: '',
     nickname: '',
-    token: ''
+    token: '',
+    location: ''
   },
   reducers: {
     setUser(state, payload) {
       return {
         ...state,
         ...payload
+      };
+    },
+    updateUserLocation(state, payload) {
+      return {
+        ...state,
+        location: payload
       };
     }
   },
@@ -50,15 +57,31 @@ const user = {
     loadUserFromCache(payload, rootState) {
       const nickname = localStorage.getItem(localStoreKey.USER_KEY);
       const token = localStorage.getItem(localStoreKey.TOKEN_KEY);
+      const location = localStorage.getItem(localStoreKey.CITY_KEY);
       if (nickname) {
         dispatch({
           type: 'user/setUser',
           payload: {
             nickname,
-            token
+            token,
+            location
           }
         });
       }
+    },
+    async asyncUpdateUserLocation(payload, rootState) {
+      const user = rootState.user;
+      if (!!user.token) {
+        await api.updateUserLocation(payload).catch(e => {
+          window.alert('Update user location failed!');
+          console.log(e);
+        });
+      }
+      localStorage.setItem(localStoreKey.CITY_KEY, payload);
+      dispatch({
+        type: 'user/updateUserLocation',
+        payload
+      });
     }
   })
 };
