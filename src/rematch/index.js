@@ -5,4 +5,8 @@ const store = init({
   models
 });
 
+store.dispatch({
+  type: 'user/loadUserFromCache'
+});
+
 export default store;

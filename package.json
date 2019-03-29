@@ -5,6 +5,8 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "@rematch/core": "^1.1.0",
+    "axios": "^0.18.0",
+    "js-base64": "^2.5.1",
     "lint-staged": "^8.1.5",
     "prettier": "^1.16.4",
     "react": "^16.8.6",
