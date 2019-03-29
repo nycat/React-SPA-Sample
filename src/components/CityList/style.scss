@@ -1,0 +1,28 @@
+.city-list {
+  background: #fff;
+  padding: 10px 10px 20px 10px;
+
+  .title {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+    color: #333;
+    background: #fff;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .city-item {
+    list-style: none;
+    width: 30%;
+    text-align: center;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    line-height: 2;
+    margin-top: 15px;
+  }
+}
