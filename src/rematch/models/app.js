@@ -30,7 +30,7 @@ const app = {
     fetchHotCities(payload, rootState) {
       api
         .fetchHotCities()
-        .then(data => {
+        .then(({ data, meta }) => {
           dispatch({
             type: 'app/setHotCities',
             payload: data
