@@ -1,0 +1,16 @@
+.comment-item {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 10px 0;
+  margin-bottom: 10px;
+
+  .username {
+    font-size: 14px;
+    color: #666;
+  }
+
+  p {
+    color: #999;
+    line-height: 2;
+    font-size: 16px;
+  }
+}
