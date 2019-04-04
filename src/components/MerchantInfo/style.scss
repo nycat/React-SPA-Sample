@@ -1,0 +1,54 @@
+.merchant-info {
+  background-color: #fff;
+
+  .inner {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .brand-logo {
+    margin-right: 10px;
+    width: 130px;
+    height: 90px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #e9203d;
+  }
+
+  .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #999;
+
+    .merchant-name {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .star-level {
+      display: flex;
+      align-items: center;
+    }
+
+    .price {
+      margin-left: 20px;
+    }
+  }
+}
+
+.opening-info {
+  background-color: #fff;
+
+  .inner {
+    margin: 0 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    color: #999;
+    line-height: 1.5;
+  }
+}
