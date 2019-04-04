@@ -8,8 +8,7 @@ const CommentItem = ({ comment }) => {
   let { nickname, star, content } = comment;
   if (!content) {
     star = 5;
-    content =
-      'User have not left a comment for his order. Five stars by default!';
+    content = `${nickname} have not left a comment for his order. Five stars by default!`;
   }
   return (
     <div className="comment-item">

@@ -4,6 +4,7 @@ import localStorage from './localStorage';
 import { API_BASE } from '../configs';
 import { Base64 } from 'js-base64';
 import store from '../rematch';
+import * as helpers from './helpers';
 
 axios.defaults.baseURL = API_BASE;
 axios.defaults.headers.post['Content-Type'] =
@@ -64,8 +65,25 @@ export const fetchHotCities = () => {
 };
 
 export const updateUserLocation = city => {
-  console.log(city);
   return axios.post('/user/city', {
     city
   });
+};
+
+export const fetchMerchantInfo = merchantId => {
+  return axios.get(`/merchant/${merchantId}`);
+};
+
+export const fetchUserOrders = () => {
+  return axios.get('/order');
+};
+
+export const getMerchants = query => {
+  const queryUrl = helpers.serialize(query);
+  return axios.get(`/merchants?${queryUrl}`);
+};
+
+export const fetchMerchantComments = (merchantId, query) => {
+  const queryUrl = helpers.serialize(query);
+  return axios.get(`/merchant/${merchantId}/comments?${queryUrl}`);
 };
