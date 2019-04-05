@@ -1,0 +1,35 @@
+.user-orders {
+  margin-top: 30px;
+  background: #fff;
+  padding: 10px;
+
+  .title {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+    color: #333;
+    background: #fff;
+  }
+
+  .btn {
+    background-color: #e9203d;
+    min-width: 80px;
+    margin: 10px 0;
+    text-align: center;
+    color: #fff;
+    padding: 5px 0;
+    border: 0;
+    font-size: 16px;
+    border-radius: 2px;
+
+    &[disabled],
+    &.is-gray {
+      background-color: #999;
+    }
+  }
+
+  .no-order {
+    line-height: 1.75;
+    padding: 2vh 0;
+  }
+}

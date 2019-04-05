@@ -74,8 +74,9 @@ export const fetchMerchantInfo = merchantId => {
   return axios.get(`/merchant/${merchantId}`);
 };
 
-export const fetchUserOrders = () => {
-  return axios.get('/order');
+export const fetchUserOrders = query => {
+  const queryUrl = helpers.serialize(query);
+  return axios.get(`/order?${queryUrl}`);
 };
 
 export const fetchMerchants = query => {
