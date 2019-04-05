@@ -2,14 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/Layout/header';
 import UserInfo from '../../components/UserInfo';
+import UserOrders from '../../components/UserOrders';
+import { navigate } from '@reach/router';
 
 class User extends Component {
+  state = {};
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!nextProps.nickname) {
+      navigate('/login');
+    } else {
+      return null;
+    }
+  }
+
   render() {
-    const { userNickname, userLocation } = this.props;
+    const { nickname, location } = this.props;
+    if (!nickname) {
+      return null;
+    }
+
     return (
       <div>
         <Header title="User Center" />
-        <UserInfo nickname={userNickname} location={userLocation} />
+        <UserInfo nickname={nickname} location={location} />
+        <UserOrders />
       </div>
     );
   }
@@ -17,8 +34,8 @@ class User extends Component {
 
 function mapStateToProps({ user }) {
   return {
-    userLocation: user && user.location,
-    userNickname: user && user.nickname
+    location: user && user.location,
+    nickname: user && user.nickname
   };
 }
 export default connect(
