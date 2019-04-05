@@ -78,7 +78,7 @@ export const fetchUserOrders = () => {
   return axios.get('/order');
 };
 
-export const getMerchants = query => {
+export const fetchMerchants = query => {
   const queryUrl = helpers.serialize(query);
   return axios.get(`/merchants?${queryUrl}`);
 };
@@ -86,4 +86,11 @@ export const getMerchants = query => {
 export const fetchMerchantComments = (merchantId, query) => {
   const queryUrl = helpers.serialize(query);
   return axios.get(`/merchant/${merchantId}/comments?${queryUrl}`);
+};
+
+export const reviewOrder = (orderId, review) => {
+  return axios.patch(`/order/${orderId}`, {
+    comment: review.comment,
+    star: review.star
+  });
 };

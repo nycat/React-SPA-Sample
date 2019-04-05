@@ -1,0 +1,17 @@
+.add-review {
+  padding-bottom: 20px;
+
+  .textarea {
+    margin: 10px 0;
+    min-height: 80px;
+    padding: 10px;
+    width: calc(100% - 20px);
+    display: block;
+    border: 1px solid #ccc;
+    outline: none;
+
+    &:focus {
+      border: 1px solid #333;
+    }
+  }
+}
