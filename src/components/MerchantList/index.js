@@ -20,6 +20,17 @@ export default class MerchantList extends Component {
     }
   };
 
+  static getDerivedStateFromProps(props, state) {
+    const category = helpers.parseQuery(window.location.search)['category'];
+    if (props.keywords) {
+      return {
+        category
+      };
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const merchants = this.state.merchants;
     return (
@@ -33,24 +44,32 @@ export default class MerchantList extends Component {
             </li>
           ))}
         </ul>
-        <LoadMore />
+        <LoadMore
+          onLoadMore={this.fetchMerchants}
+          isLoading={this.state.meta.isLoading}
+        />
       </Fragment>
     );
   }
 
   fetchMerchants = async () => {
-    let query = {
+    if (this.state.meta.isLoading || !this.state.meta.more) {
+      return;
+    }
+
+    const query = helpers.clean({
       page: this.state.meta.page,
       size: this.state.meta.size,
       keywords: this.props.keywords,
-      category: this.props.category
-    };
-    query = helpers.clean(query);
-    const { meta, data } = await api.fetchMerchants(query).catch(e => {
-      console.log(e, query);
-      window.alert('Fetch merchant list failed!');
+      category: helpers.parseQuery(window.location.search)['category'],
+      city: this.props.city
     });
     const merchants = lodash.cloneDeep(this.state.merchants);
+
+    const { meta, data } = await api.fetchMerchants(query).catch(e => {
+      window.alert('Fetch merchant list failed!');
+    });
+
     this.setState({
       meta: {
         isLoading: false,
@@ -61,9 +80,14 @@ export default class MerchantList extends Component {
       merchants: merchants.concat(data)
     });
   };
+
+  componentDidMount() {
+    this.fetchMerchants();
+  }
 }
 
 MerchantList.propTypes = {
   keywords: PropTypes.string,
-  category: PropTypes.string
+  category: PropTypes.string,
+  city: PropTypes.string
 };
