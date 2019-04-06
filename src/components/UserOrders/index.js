@@ -40,8 +40,13 @@ class UserOrders extends Component {
   }
 
   fetchUserOrders = async () => {
+    const stateMeta = this.state.meta;
+    if (stateMeta.isLoading || !stateMeta.more) {
+      return;
+    }
+
     const orders = JSON.parse(JSON.stringify(this.state.orders));
-    const query = this.state.meta;
+    const query = JSON.parse(JSON.stringify(stateMeta));
     delete query.more;
     delete query.isLoading;
 
