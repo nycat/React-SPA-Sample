@@ -9,7 +9,7 @@ class City extends Component {
     const { hotCities, currentCity } = this.props;
     return (
       <Fragment>
-        <Header title="City" />
+        <Header title="City List" backTo={{ showBackTo: true }} />
         <CurrentCity city={currentCity} />
         <CityList hotCities={hotCities} onClickCity={this.changeCity} />
       </Fragment>
