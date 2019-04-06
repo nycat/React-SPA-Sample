@@ -1,0 +1,13 @@
+.home-header {
+  display: flex;
+
+  .city-link {
+    display: flex;
+    justify-content: center;
+
+    span {
+      text-decoration: underline;
+      margin-left: 4px;
+    }
+  }
+}
