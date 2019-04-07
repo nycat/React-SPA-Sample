@@ -1,0 +1,44 @@
+.place-order {
+  border-top: 4px solid #fafafa;
+  padding-top: 40px;
+  transition: ease 2s;
+
+  .title {
+    font-size: 18px;
+    font-weight: bolder;
+    color: #333;
+  }
+
+  .place-order-form {
+    input {
+      margin-left: 8px;
+      border: 1px solid #666;
+      width: calc(100% - 8px);
+    }
+
+    .btn {
+      min-width: 80px;
+      margin: 10px 0;
+      padding: 0;
+      text-align: center;
+      color: #fff !important;
+      border: 0;
+      font-size: 16px;
+      border-radius: 2px;
+      margin-right: 10px;
+
+      &[disabled],
+      &.is-red {
+        background-color: #e9203d;
+      }
+
+      &.is-gray {
+        background-color: #999;
+      }
+    }
+
+    .btn-group {
+      justify-content: center;
+    }
+  }
+}
