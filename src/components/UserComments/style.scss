@@ -1,4 +1,7 @@
+@import '../../static/scss/var';
+
 .user-comments {
+  @include part-margin;
   padding: 10px;
   background: #fff;
 
