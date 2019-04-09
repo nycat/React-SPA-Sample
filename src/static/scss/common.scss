@@ -1,6 +1,10 @@
 @import './reset.scss';
 @import './font.scss';
 
+body {
+  background-color: #fafafa;
+}
+
 ul,
 li {
   list-style: none;
@@ -8,7 +12,17 @@ li {
   padding: 0;
 }
 
+a {
+  color: #333;
+  text-decoration: none;
+}
+
 button,
 input {
   outline: none;
+  border-radius: 4px;
+}
+
+.btn {
+  border-radius: 4px;
 }
