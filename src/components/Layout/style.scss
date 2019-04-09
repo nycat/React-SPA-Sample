@@ -1,0 +1,36 @@
+@import '../../static/scss/var';
+
+.app-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  color: #fff;
+  background-color: $custom-red;
+  padding: 0 $blank-margin;
+
+  a {
+    color: #fff;
+  }
+
+  .header-left {
+    margin-right: 2vw;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-right {
+    margin-left: 2vw;
+    text-align: right;
+  }
+
+  .title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-weight: bolder;
+    transform: translate(-50%, -50%);
+  }
+}
