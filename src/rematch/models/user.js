@@ -35,7 +35,7 @@ const user = {
           dispatch({
             type: 'user/setUser',
             payload: {
-              city,
+              location: city,
               nickname,
               token,
               id
