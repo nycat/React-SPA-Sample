@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../components/Layout/header';
 import MerchantInfo from '../../components/MerchantInfo';
 import UserComments from '../../components/UserComments';
+import BuyOrCollect from '../../components/BuyOrCollect';
 import * as api from '../../utils/api';
 
 export default class Merchant extends Component {
@@ -20,8 +21,9 @@ export default class Merchant extends Component {
     const { merchantInfo, id } = this.state;
     return (
       <div>
-        <Header title="Merchant Info" />
+        <Header title="Merchant Info" backTo={{ showBackTo: true }} />
         <MerchantInfo merchant={merchantInfo} />
+        <BuyOrCollect merchantId={id} />
         <UserComments merchantId={id} />
       </div>
     );
@@ -31,7 +33,7 @@ export default class Merchant extends Component {
     const merchantId = this.state.id;
     api
       .fetchMerchantInfo(merchantId)
-      .then(({ meta, data }) => {
+      .then(({ data }) => {
         this.setState({
           merchantInfo: data
         });
