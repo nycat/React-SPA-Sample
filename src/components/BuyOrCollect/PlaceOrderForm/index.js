@@ -56,6 +56,7 @@ export default class PlaceOrderForm extends Component {
       })
       .catch(e => {
         console.log(e);
+        window.alert('Place order failed!');
       });
   };
 

@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { navigate } from '@reach/router';
 import PlaceOrderForm from './PlaceOrderForm';
+import * as api from '../../utils/api';
 
 import './style.scss';
 
@@ -42,10 +43,9 @@ class BuyOrCollect extends Component {
       if (token) {
         resolve();
       } else {
-        reject({
-          code: 403,
-          msg: 'You are not login in, please do login!'
-        });
+        window.alert('You are not login in, please login in!');
+        navigate('/login');
+        return reject();
       }
     });
   };
@@ -58,10 +58,8 @@ class BuyOrCollect extends Component {
         });
       })
       .catch(e => {
+        console.log(e);
         window.alert((e && e.msg) || 'Place order failed!');
-        if (e && e.code === 403) {
-          navigate('/login');
-        }
       });
   };
 
@@ -71,7 +69,12 @@ class BuyOrCollect extends Component {
     });
   };
 
-  onAddToFavorite = e => {};
+  onAddToFavorite = e => {
+    api.addTofavoriate(this.props.merchantId).catch(e => {
+      console.log(e);
+      window.alert((e && e.msg) || 'Add to favoriate failed!');
+    });
+  };
 }
 
 BuyOrCollect.propTypes = {
