@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from '@reach/router';
 import { PropTypes } from 'prop-types';
 import OrderReviewForm from '../../OrderReviewForm';
 
@@ -36,7 +37,12 @@ class Order extends Component {
               style={{ backgroundImage: `url(${order.logoUrl})` }}
             />
             <div className="detail">
-              <span className="merchant-name">{order.merchant}</span>
+              <Link
+                to={`/merchant/${order.merchantId}`}
+                className="product-name"
+              >
+                {order.merchant}
+              </Link>
               <span className="order-price">
                 Price: <strong>${order.price}</strong>
               </span>
