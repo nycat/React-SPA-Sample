@@ -24,7 +24,7 @@ class User extends Component {
 
     return (
       <div>
-        <Header title="User Center" />
+        <Header title="User Center" backTo={{ showBackTo: true }} />
         <UserInfo nickname={nickname} location={location} />
         <UserOrders />
       </div>
