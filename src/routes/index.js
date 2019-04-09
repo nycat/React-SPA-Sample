@@ -3,36 +3,38 @@ import { Router, Link } from '@reach/router';
 import asyncLoadComponent from '../utils/asyncLoadComponent';
 
 const AsyncHome = asyncLoadComponent(() => {
-  return import('../containers/Home');
+  return import('../containers/Home/index');
 });
 const AsyncCity = asyncLoadComponent(() => {
-  return import('../containers/City');
+  return import('../containers/City/index');
 });
 const AsyncUser = asyncLoadComponent(() => {
-  return import('../containers/User');
+  return import('../containers/User/index');
+});
+
+const AsyncLogin = asyncLoadComponent(() => {
+  return import('../containers/Login/index');
+});
+
+const AsyncMerchant = asyncLoadComponent(() => {
+  return import('../containers/Merchant/index');
+});
+
+const AscyncSearch = asyncLoadComponent(() => {
+  return import('../containers/Search/index');
 });
 
 export default class componentName extends Component {
   render() {
     return (
-      <div className="router-map">
-        <ul>
-          <li>
-            <Link to="/">home</Link>
-          </li>
-          <li>
-            <Link to="/city">city</Link>
-          </li>
-          <li>
-            <Link to="/user">user</Link>
-          </li>
-        </ul>
-        <Router>
-          <AsyncHome path="/" />
-          <AsyncCity path="/city" />
-          <AsyncUser path="/user" />
-        </Router>
-      </div>
+      <Router>
+        <AsyncHome path="/" />
+        <AsyncCity path="/city" />
+        <AsyncUser path="/user" />
+        <AsyncLogin path="/login" />
+        <AsyncMerchant path="/merchant/:merchantId" />
+        <AscyncSearch path="/search" />
+      </Router>
     );
   }
 }
