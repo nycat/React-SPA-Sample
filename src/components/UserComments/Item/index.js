@@ -5,11 +5,12 @@ import Star from '../../Star';
 import './style.scss';
 
 const CommentItem = ({ comment }) => {
-  let { nickname, star, content, updatedAt } = comment;
+  let { nickname, star, updatedAt } = comment;
+  let content = comment.comment;
   updatedAt = new Date(updatedAt).toLocaleString();
   if (!content) {
     star = 5;
-    content = `${nickname} have not left a comment for his order. Five stars by default!`;
+    content = `${nickname} has not left a comment for his order. Five stars by default!`;
   }
   return (
     <div className="comment-item">
