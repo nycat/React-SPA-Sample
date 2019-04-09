@@ -1,4 +1,7 @@
+@import '../../static/scss/_var.scss';
+
 .city-list {
+  @include part-margin;
   background: #fff;
   padding: 10px 10px 20px 10px;
 

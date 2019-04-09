@@ -1,6 +1,7 @@
-@import '../../static/scss/var';
+@import '../../static/scss/var.scss';
 
 .buy-or-favorite {
+  @include part-margin-border;
   text-align: center;
   background: #fff;
 
