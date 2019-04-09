@@ -20,17 +20,6 @@ export default class MerchantList extends Component {
     }
   };
 
-  static getDerivedStateFromProps(props, state) {
-    const category = helpers.parseQuery(window.location.search)['category'];
-    if (props.keywords) {
-      return {
-        category
-      };
-    } else {
-      return null;
-    }
-  }
-
   render() {
     const merchants = this.state.merchants;
     return (
@@ -60,16 +49,15 @@ export default class MerchantList extends Component {
     const query = helpers.clean({
       page: this.state.meta.page,
       size: this.state.meta.size,
-      keywords: this.props.keywords,
-      category: helpers.parseQuery(window.location.search)['category'],
+      keyword: this.props.keyword,
+      category: this.props.category,
       city: this.props.city
     });
-    const merchants = lodash.cloneDeep(this.state.merchants);
-
     const { meta, data } = await api.fetchMerchants(query).catch(e => {
       window.alert('Fetch merchant list failed!');
     });
 
+    const merchants = lodash.cloneDeep(this.state.merchants);
     this.setState({
       meta: {
         isLoading: false,
@@ -81,13 +69,44 @@ export default class MerchantList extends Component {
     });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const curKeyword = this.props.keyword;
+    const curCity = this.props.city;
+    const curCategory = this.props.category;
+
+    const prevKeyword = prevProps.keyword;
+    const prevCity = prevProps.city;
+    const prevCategory = prevProps.category;
+
+    if (
+      curKeyword !== prevKeyword ||
+      curCategory !== prevCategory ||
+      curCity !== prevCity
+    ) {
+      this.setState(
+        {
+          meta: {
+            size: 10,
+            page: 1,
+            more: true,
+            isLoading: false
+          },
+          merchants: []
+        },
+        () => {
+          this.fetchMerchants();
+        }
+      );
+    }
+  }
+
   componentDidMount() {
     this.fetchMerchants();
   }
 }
 
 MerchantList.propTypes = {
-  keywords: PropTypes.string,
+  keyword: PropTypes.string,
   category: PropTypes.string,
   city: PropTypes.string
 };
