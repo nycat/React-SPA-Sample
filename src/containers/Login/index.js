@@ -63,7 +63,9 @@ class Login extends Component {
     e.preventDefault();
 
     const { account, password } = this.state;
-    const validAccount = /\d{11}/.test(account);
+    const validAccount = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      account
+    );
     const validPassword = password.length >= 6;
 
     if (validPassword && validAccount) {
