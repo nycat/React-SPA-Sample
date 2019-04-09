@@ -10,15 +10,18 @@ const FormInputField = props => {
     onChange,
     icon = null,
     type = 'text',
-    placehoder = ''
+    placehoder = '',
+    label = null
   } = props;
   return (
     <div className="form-field text-input">
       {icon ? <i className={`icon ${icon}`} /> : null}
+      {label ? <label htmlFor={name}>{label}</label> : null}
       <input
         type={type}
         name={name}
         value={value}
+        id={name}
         placeholder={placehoder || name}
         onChange={onChange}
       />
