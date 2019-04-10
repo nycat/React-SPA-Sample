@@ -22,6 +22,15 @@ export default class MerchantList extends Component {
 
   render() {
     const merchants = this.state.merchants;
+    const more = this.state.meta.more;
+    if (!more && !merchants.length) {
+      return (
+        <div className="merchant-list">
+          <p className="no-data-hint">No any data yet</p>
+        </div>
+      );
+    }
+
     return (
       <Fragment>
         <ul className="merchant-list">
@@ -55,6 +64,10 @@ export default class MerchantList extends Component {
     });
     const { meta, data } = await api.fetchMerchants(query).catch(e => {
       window.alert('Fetch merchant list failed!');
+      return {
+        meta: {},
+        data: []
+      };
     });
 
     const merchants = lodash.cloneDeep(this.state.merchants);

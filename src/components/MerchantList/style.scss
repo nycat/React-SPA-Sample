@@ -1,6 +1,11 @@
 .merchant-list {
   background-color: #fff;
 
+  .no-data-hint {
+    padding: 10vh 0;
+    text-align: center;
+  }
+
   .to-merchant {
     display: block;
     text-decoration: none;
