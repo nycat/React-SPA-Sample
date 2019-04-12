@@ -49,9 +49,11 @@ class Home extends Component {
   };
 }
 
-const mapStateToProps = ({ user }, ownProps) => {
+const mapStateToProps = ({ app, user }, ownProps) => {
+  const location =
+    (user && user.location) || (app && app.hotCities && app.hotCities[0]);
   return {
-    location: user && user.location,
+    location: location,
     isLogin: !!(user && user.token)
   };
 };
