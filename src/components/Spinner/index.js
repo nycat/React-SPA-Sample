@@ -11,8 +11,9 @@ const override = css`
 `;
 
 const asyncLoadSpinner = () => (
-  <div className="asyncloader-spinner">
+  <div className="ajax-spinner">
     <ScaleLoader
+      className="spinner"
       css={override}
       sizeUnit={'px'}
       size={150}
