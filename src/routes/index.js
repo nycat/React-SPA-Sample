@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Router } from '@reach/router';
+import { connect } from 'react-redux';
+import Spinner from '../components/Spinner';
 import asyncLoadComponent from '../utils/asyncLoadComponent';
 
 const AsyncHome = asyncLoadComponent(() => {
@@ -24,17 +26,32 @@ const AscyncSearch = asyncLoadComponent(() => {
   return import('../containers/Search/index');
 });
 
-export default class componentName extends Component {
+class RouterMap extends Component {
   render() {
+    const isAjaxLoading = this.props.isAjaxLoading;
     return (
-      <Router>
-        <AsyncHome path="/" />
-        <AsyncCity path="/city" />
-        <AsyncUser path="/user" />
-        <AsyncLogin path="/login" />
-        <AsyncMerchant path="/merchant/:merchantId" />
-        <AscyncSearch path="/search" />
-      </Router>
+      <Fragment>
+        <Router>
+          <AsyncHome path="/" />
+          <AsyncCity path="/city" />
+          <AsyncUser path="/user" />
+          <AsyncLogin path="/login" />
+          <AsyncMerchant path="/merchant/:merchantId" />
+          <AscyncSearch path="/search" />
+        </Router>
+        {isAjaxLoading ? <Spinner /> : null}
+      </Fragment>
     );
   }
 }
+
+const mapStateToProps = ({ app }, ownProps) => {
+  return {
+    isAjaxLoading: app.ajaxSpinner
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(RouterMap);
